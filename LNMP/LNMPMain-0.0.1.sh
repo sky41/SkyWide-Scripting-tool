@@ -2,10 +2,19 @@
 
 # 检查是否以 root 用户运行
 if [ "$EUID" -ne 0 ]; then
-    echo "请使用 root 用户运行此脚本。"
+    # 设置文本颜色为红色
+    RED='\033[0;31m'
+    # 重置文本颜色
+    NC='\033[0m'
+    echo -e "${RED}root用户失败${NC}"
     exit 1
+else
+    # 设置文本颜色为绿色
+    GREEN='\033[0;32m'
+    # 重置文本颜色
+    NC='\033[0m'
+    echo -e "${GREEN}root用户succeed${NC}"
 fi
-
 # 更新系统
 echo "正在更新系统..."
 yum update -y
